@@ -6,15 +6,21 @@
     let result = null
 
     async function create() {
-        const res = await fetch('http://localhost:3000/users/login', {
-            method: 'POST',
-            body: JSON.stringify({
-                username,
-                password
+        try{
+            const res = await fetch('http://localhost:3000/users/login', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    username,
+                    password
+                })
             })
-        })
-        const json = await res.json()
-        result = JSON.stringify(json)
+            const json = await res.json()
+            result = JSON.stringify(json)
+        }
+        catch (error){
+            result = error
+        }
     }
 
 </script>
@@ -23,8 +29,8 @@
     <title>Sign in</title>
 </svelte:head>
 
-<input bind:value={username} />
-<input bind:value={password} />
+<label><input bind:value={username} placeholder="username"/></label>
+<label><input bind:value={password} placeholder="password"/></label>
 <button type="button" on:click={create}>
     Connect
 </button>
