@@ -1,11 +1,12 @@
 <script>
     import Banner from '../banner.svelte'
+    import Cookies from 'js-cookie'
 
     let username = '';
     let password = '';
     let result = null
 
-    async function create() {
+    async function login() {
         try{
             const res = await fetch('http://localhost:3000/users/login', {
                 method: 'POST',
@@ -17,6 +18,7 @@
             })
             const json = await res.json()
             result = JSON.stringify(json)
+            Cookies.set('jwt_token', json["jwt"], { expires: 7 });
         }
         catch (error){
             result = error
@@ -31,10 +33,12 @@
 
 <label><input bind:value={username} placeholder="username"/></label>
 <label><input bind:value={password} placeholder="password"/></label>
-<button type="button" on:click={create}>
+<button type="button" on:click={login}>
     Connect
 </button>
-
+<p class="text-xs-center">
+    <a href="/register">No account yet. Register now !</a>
+</p>
 <p>
     Result:
 </p>

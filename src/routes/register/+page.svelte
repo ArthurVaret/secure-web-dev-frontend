@@ -19,10 +19,7 @@
             result = JSON.stringify(json)
         }
         catch (error) {
-            result = JSON.stringify({
-                username,
-                password
-            })
+            result = error
             console.log(result)
         }
     }
@@ -32,15 +29,15 @@
 <svelte:head>
     <title>Register</title>
 </svelte:head>
-<p class="text-xs-center">
-    <a href="/login">Have an account?</a>
-</p>
+
 <label><input bind:value={username} placeholder="username"/></label>
 <label><input bind:value={password} placeholder="password"/></label>
 <button type="button" on:click={doPost}>
     Register
 </button>
-
+<p class="text-xs-center">
+    <a href="/login">Already have an account?</a>
+</p>
 <p>
     Result:
 </p>

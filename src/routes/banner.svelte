@@ -1,1 +1,3 @@
-<p>Paris filming locations</p>
+<h1>
+    <a href="/locations">Paris filming locations</a>
+</h1>
