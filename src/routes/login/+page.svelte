@@ -4,7 +4,7 @@
 
     let username = '';
     let password = '';
-    let result = null
+    let result = '';
 
     async function login() {
         try{
@@ -17,8 +17,8 @@
                 })
             })
             const json = await res.json()
-            result = JSON.stringify(json)
-            Cookies.set('jwt_token', json["jwt"], { expires: 7 });
+            result="Connected"
+            Cookies.set('jwt', json["jwt"], { expires: 7 });
         }
         catch (error){
             result = error
@@ -31,17 +31,24 @@
     <title>Sign in</title>
 </svelte:head>
 
-<label><input bind:value={username} placeholder="username"/></label>
-<label><input bind:value={password} placeholder="password"/></label>
-<button type="button" on:click={login}>
-    Connect
-</button>
-<p class="text-xs-center">
-    <a href="/register">No account yet. Register now !</a>
-</p>
-<p>
-    Result:
-</p>
-<pre>
-{result}
-</pre>
+<main class="text-center form-signing w-25 m-auto">
+    <form>
+        <img class="mb-4" src="favicon.png" alt="" width="72" height="57">
+        <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+        <p>
+            <a href="/register">No account yet. Register now !</a>
+        </p>
+        <div class="form-floating">
+            <input type="text" class="form-control" id="floatingInput" bind:value={username} placeholder="Username">
+            <label for="floatingInput">Username</label>
+        </div>
+        <div class="form-floating">
+            <input type="password" class="form-control" id="floatingPassword" bind:value={password} placeholder="Password">
+            <label for="floatingPassword">Password</label>
+        </div>
+        <button class="w-100 btn btn-lg btn-primary" type="button" on:click={login}>Sign in</button>
+        <p>
+            {result}
+        </p>
+    </form>
+</main>
