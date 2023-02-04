@@ -1,7 +1,6 @@
 <script>
     import Banner from '../banner.svelte'
     import Cookies from 'js-cookie'
-    import {get} from "svelte/store";
 
     let data = []
     let konsol = ''
@@ -84,7 +83,7 @@
     async function doGet() {
         try {
             const token = Cookies.get('jwt');
-            const res = await fetch('http://localhost:3000/locations?offset=0&limit=10', {
+            const res = await fetch(`http://localhost:3000/locations?offset=${numpage*10}&limit=${(numpage*10)+10}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -97,6 +96,11 @@
             data = error
         }
     }
+    function pagination(num) {
+        numpage += num
+        doGet()
+    }
+
     getRole();
     $: doGet();
     $: refreshedData = data;
@@ -137,8 +141,8 @@
             <td contenteditable="true" bind:innerHTML={row["year"]}></td>
             {#if role==='admin'}
                 <div>
-                    <button class="btn btn-outline-danger" on:click={() => deleteRow(row)}>Delete</button>
-                    <button class="btn btn-outline-info" on:click={() => editRow(row)}>Edit</button>
+                    <button class="btn btn-danger" on:click={() => deleteRow(row)}>Delete</button>
+                    <button class="btn btn-info" on:click={() => editRow(row)}>Edit</button>
                 </div>
             {/if}
         </tr>
@@ -151,7 +155,11 @@
     </tr>
     </tbody>
 </table>
-
+<div class="text-center">
+    <button class="btn btn-light" on:click={() => pagination(-1)}>Previous</button>
+    <label>Pages n°<span className="badge">{numpage}</span></label>
+    <button class="btn btn-light" on:click={() => pagination(1)}>Next</button>
+</div>
 <pre>
 {konsol}
 </pre>
