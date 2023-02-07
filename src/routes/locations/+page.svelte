@@ -30,6 +30,7 @@
     async function editRow(rowToEdit) {
         try {
             const token = Cookies.get('jwt');
+            console.log(rowToEdit);
             const res = await fetch('http://localhost:3000/locations/'+ rowToEdit['_id'], {
                 method: 'PATCH',
                 headers: {
@@ -83,7 +84,7 @@
     async function doGet() {
         try {
             const token = Cookies.get('jwt');
-            const res = await fetch(`http://localhost:3000/locations?offset=${numpage*10}&limit=${(numpage*10)+10}`, {
+            const res = await fetch(`http://localhost:3000/locations?offset=${numpage*10}&limit=10`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -149,12 +150,14 @@
             {/if}
         </tr>
     {/each}
-    <tr class="text-center">
-        {#each newRow as column}
-            <td contenteditable="true" bind:innerHTML={column}></td>
-        {/each}
-        <button class="btn btn-outline-success" on:click={addRow}>add</button>
-    </tr>
+    {#if role==='admin'}
+        <tr class="text-center">
+            {#each newRow as column}
+                <td contenteditable="true" bind:innerHTML={column}></td>
+            {/each}
+            <button class="btn btn-outline-success" on:click={addRow}>add</button>
+        </tr>
+    {/if}
     </tbody>
 </table>
 <div class="text-center">
