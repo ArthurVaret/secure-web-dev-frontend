@@ -33,7 +33,7 @@
 <main class="text-center form-signing w-25 m-auto">
     <form>
         <img class="mb-4" src="charmender.png" alt="" width="72" height="57">
-        <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+        <h1 class="h3 mb-3 fw-normal">Please sign up</h1>
         <p>
             <a href="/login">Already have an account. Sign in here !</a>
         </p>
@@ -45,7 +45,7 @@
             <input type="password" class="form-control" id="floatingPassword" bind:value={password} placeholder="Password">
             <label for="floatingPassword">Password</label>
         </div>
-        <button class="w-100 btn btn-lg btn-primary" type="button" on:click={register}>Sign in</button>
+        <button class="w-100 btn btn-lg btn-primary" type="button" on:click={register}>Sign up</button>
         <p>
             {result}
         </p>

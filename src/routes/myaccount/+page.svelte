@@ -31,9 +31,10 @@
     async function logOut(){
         console.log("log out")
         Cookies.set('jwt', '', { expires: 0 });
+        result = "You are logged out! Please register or sign in."
     }
 
-    doGet()
+    $: doGet()
 </script>
 <Banner></Banner>
 

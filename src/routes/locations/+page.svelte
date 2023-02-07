@@ -17,9 +17,9 @@
                     'Content-Type': 'application/json',
                     'Authorization': 'Bearer ' + token
                 },
-                body: {
+                body: JSON.stringify({
                     rowToAdd
-                }
+                })
             })
             konsol = JSON.stringify(await res.json());
         }
@@ -30,15 +30,15 @@
     async function editRow(rowToEdit) {
         try {
             const token = Cookies.get('jwt');
-            const res = await fetch('http://localhost:3000/locations', {
+            const res = await fetch('http://localhost:3000/locations/'+ rowToEdit['_id'], {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': 'Bearer ' + token
                 },
-                body: {
+                body: JSON.stringify({
                     rowToEdit
-                }
+                })
             })
             konsol = JSON.stringify(await res.json());
         }
@@ -97,8 +97,10 @@
         }
     }
     function pagination(num) {
-        numpage += num
-        doGet()
+        if (numpage + num >= 0) {
+            numpage += num
+            doGet()
+        }
     }
 
     getRole();
@@ -157,7 +159,7 @@
 </table>
 <div class="text-center">
     <button class="btn btn-light" on:click={() => pagination(-1)}>Previous</button>
-    <label>Pages n°<span className="badge">{numpage}</span></label>
+    <label>Pages n°<span className="badge">{numpage+1}</span></label>
     <button class="btn btn-light" on:click={() => pagination(1)}>Next</button>
 </div>
 <pre>
