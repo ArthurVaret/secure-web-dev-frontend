@@ -17,9 +17,9 @@
                     'Content-Type': 'application/json',
                     'Authorization': 'Bearer ' + token
                 },
-                body: JSON.stringify({
+                body: JSON.stringify(
                     rowToAdd
-                })
+                )
             })
             konsol = JSON.stringify(await res.json());
         }
@@ -37,9 +37,9 @@
                     'Content-Type': 'application/json',
                     'Authorization': 'Bearer ' + token
                 },
-                body: JSON.stringify({
+                body: JSON.stringify(
                     rowToEdit
-                })
+                )
             })
             konsol = JSON.stringify(await res.json());
         }
