@@ -2,7 +2,7 @@
 export async function handle({ event, resolve }) {
     try {
         const token = event.cookies.get('jwt');
-        const res = await fetch('http://localhost:3000/users/me', {
+        const res = await fetch('https://web-app-locations-backend.onrender.com/users/me', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

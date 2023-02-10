@@ -11,7 +11,7 @@
     async function addRow(rowToAdd) {
         try {
             const token = Cookies.get('jwt');
-            const res = await fetch('http://localhost:3000/locations', {
+            const res = await fetch('https://web-app-locations-backend.onrender.com/locations', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -31,7 +31,7 @@
         try {
             const token = Cookies.get('jwt');
             console.log(rowToEdit);
-            const res = await fetch('http://localhost:3000/locations/'+ rowToEdit['_id'], {
+            const res = await fetch('https://web-app-locations-backend.onrender.com/locations/'+ rowToEdit['_id'], {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
@@ -50,7 +50,7 @@
     async function deleteRow(rowToBeDeleted) {
         try {
             const token = Cookies.get('jwt');
-            const res = await fetch('http://localhost:3000/locations/' + rowToBeDeleted['_id'], {
+            const res = await fetch('https://web-app-locations-backend.onrender.com/locations/' + rowToBeDeleted['_id'], {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
@@ -67,7 +67,7 @@
     async function getRole() {
         try {
             const token = Cookies.get('jwt');
-            const res = await fetch('http://localhost:3000/users/me', {
+            const res = await fetch('https://web-app-locations-backend.onrender.com/users/me', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -84,7 +84,7 @@
     async function doGet() {
         try {
             const token = Cookies.get('jwt');
-            const res = await fetch(`http://localhost:3000/locations?offset=${numpage*10}&limit=10`, {
+            const res = await fetch(`https://web-app-locations-backend.onrender.com/locations?offset=${numpage*10}&limit=10`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
