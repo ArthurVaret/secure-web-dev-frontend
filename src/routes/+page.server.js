@@ -2,7 +2,7 @@ import Cookies from 'js-cookie'
 export async function load({ locals }) {
     try {
         const token = Cookies.get('jwt');
-        const res = await fetch('http://localhost:3000/users/me', {
+        const res = await fetch('https://web-app-locations-backend.onrender.com/users/me', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

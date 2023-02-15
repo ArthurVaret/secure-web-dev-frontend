@@ -8,7 +8,7 @@
 
     async function login() {
         try{
-            const res = await fetch('http://localhost:3000/users/login', {
+            const res = await fetch('https://web-app-locations-backend.onrender.com/users/login', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
